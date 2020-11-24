@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SIT120AT2</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <h1>
+        <div id="app">
+            <div class="title" v-bind:class="[ isActive ? 'active' : '', isBlue ? 'blue' : '']" style="text-align:center">
+                {{message}}
+            </div>
+        </div>
+    </h1>
+
+    <div class="welcome">
+        <div id="app1">
+            <input v-model="message1" placeholder="Please enter your name">
+            <p>Hello {{message1}}, welcome to Melbourne City!</p>
+        </div>
+    </div>
+
+    <div class="searchbar">
+        <div id="search">
+            <input placeholder="make a search">
+            <button @click="addToSearch">Search</button>
+            <p>You have searched {{ counter }} times.</p>
+        </div>
+    </div>
+
+
+    <h2>Scenic Spots</h2>
+
+
+    <div id="scenic-spots">
+        <div class="tab-button">
+            <button v-for="tab in tabs" v-on:click="currentTab = tab">{{tab}}</button>
+        </div>
+<div class="view">
+            <component v-bind:is="currentTabComponent">
+            </component>
+        </div>
+    </div>
+
+
+
+
+    <h3>Catering</h3>
+
+    <div id="restaurant1">
+        <div class="embla">
+
+            <div class="embla-image">
+                <img v-bind:src="image">
+            </div>
+
+            <div class="embla-info">
+                <p>{{info}}</p>
+                <p v-if="open">now open</p>
+                <p v-else>now close</p>
+            </div>
+            <div class="embla-rank">
+                <select v-model="rank">
+                    <option disabled value="">please select</option>
+                    <option>1 star</option>
+                    <option>2 star</option>
+                    <option>3 star</option>
+                    <option>4 star</option>
+                    <option>5 star</option>
+                </select>
+                <span>rank: {{ rank }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="restaurant2">
+        <div class="cheek">
+
+            <div class="cheek-image">
+                <img v-bind:src="image">
+            </div>
+
+            <div class="cheek-info">
+                <p>{{info}}</p>
+                <p v-if="open">now open</p>
+                <p v-else>now close</p>
+            </div>
+            <div class="cheek-rank">
+                <select v-model="rank">
+                    <option disabled value="">please select</option>
+                    <option>1 star</option>
+                    <option>2 star</option>
+                    <option>3 star</option>
+                    <option>4 star</option>
+                    <option>5 star</option>
+                </select>
+                <span>rank: {{ rank }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="restaurant3">
+        <div class="lesa">
+
+            <div class="lesa-image">
+                <img v-bind:src="image">
+            </div>
+
+            <div class="lesa-info">
+                <p>{{info}}</p>
+                <p v-if="open">now open</p>
+                <p v-else>now close</p>
+            </div>
+            <div class="lesa-rank">
+                <select v-model="rank">
+                    <option disabled value="">please select</option>
+                    <option>1 star</option>
+                    <option>2 star</option>
+                    <option>3 star</option>
+                    <option>4 star</option>
+                    <option>5 star</option>
+                </select>
+                <span>rank: {{ rank }}</span>
+            </div>
+        </div>
+    </div>
+
+    <h5>Save List</h5>
+
+
+    <div id="save-list">
+        <div class="sl">
+            <form v-on:submit.prevent="addNewSave">
+                <label for="new-save">save list</label>
+                <input v-model="newSaveText" id="new-save" placeholder="save items">
+                <button>Add</button>
+            </form>
+            <ul>
+                <li is="save-item" v-for="(save, index) in saves" v-bind:key="save.id" v-bind:title="save.title" v-on:remove="saves.splice(index, 1)"></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <h4>Assist</h4>
+
+
+
+    <div id="web">
+        <div class="five">
+            <button v-on:click="show = !show">
+                website
+            </button>
+            <transition name="website">
+                <p v-if="show">https://whatson.melbourne.vic.gov.au</p>
+            </transition>
+        </div>
+    </div>
+
+    <div id="phone">
+        <div class="five">
+            <button v-on:click="show = !show">
+                telephone
+            </button>
+            <transition name="website">
+                <p v-if="show">+61 3 9658 9658</p>
+            </transition>
+        </div>
+    </div>
+
+
+
+
+    <script src="index.js"></script>
+
+
+</body></html>
